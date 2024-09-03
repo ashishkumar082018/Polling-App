@@ -3,6 +3,7 @@ const express = require("express");
 const { errors, notFound } = require("./handlers");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const routes = require("./routes");
 
 const db = require("./models");
 
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.json({ hello: "world" });
 });
+app.use("/api/auth", routes.auth);
 
 app.use(notFound);
 

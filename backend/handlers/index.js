@@ -1,3 +1,8 @@
+module.exports = {
+  ...require("./auth"),
+  ...require("./poll"),
+};
+
 module.exports.notFound = (req, res, next) => {
   const err = new Error("Not Found");
   err.status = 404;
