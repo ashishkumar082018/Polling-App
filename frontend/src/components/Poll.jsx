@@ -1,16 +1,17 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Pie } from 'react-chartjs-2';
-import { Chart, ArcElement, Tooltip, Legend } from 'chart.js'; // Import necessary components
+import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 import { vote } from '../store/actions';
 import { color } from '../services/color';
 
-// Register the required components
 Chart.register(ArcElement, Tooltip, Legend);
 
 const Poll = () => {
   const poll = useSelector((state) => state.currentPoll);
   const dispatch = useDispatch();
+
+  if (!poll) return <p>Loading...</p>; // Add a loading state or message
 
   const handleVote = (option) => {
     dispatch(vote(poll._id, { answer: option }));

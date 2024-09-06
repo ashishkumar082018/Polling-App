@@ -1,9 +1,12 @@
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { createPoll } from '../store/actions';
+// import { useNavigate } from 'react-router-dom';
+
 
 const CreatePoll = ({ createPoll }) => {
   const [formData, setFormData] = useState({ question: '', options: ['', ''] });
+  // const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,6 +25,7 @@ const CreatePoll = ({ createPoll }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createPoll(formData);
+    // navigate('/');
   };
 
   const options = formData.options.map((option, i) => (

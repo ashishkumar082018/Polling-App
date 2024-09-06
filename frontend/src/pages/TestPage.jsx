@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Provider } from 'react-redux';
-import { jwtDecode as decode } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 import { store } from '../store';
 import { setToken, setCurrentUser, addError } from '../store/actions';
@@ -14,7 +14,7 @@ import CreatePoll from '../components/CreatePoll';
 if (localStorage.jwtToken) {
   setToken(localStorage.jwtToken);
   try {
-    store.dispatch(setCurrentUser(decode(localStorage.jwtToken)));
+    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
   } catch (err) {
     store.dispatch(setCurrentUser({}));
     store.dispatch(addError(err));
